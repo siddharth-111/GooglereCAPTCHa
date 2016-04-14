@@ -1,0 +1,64 @@
+﻿@model GooglereCAPTCHa.Models.CaptchaResponse
+@{
+    ViewBag.Title = "Home Page";
+}
+@section css {
+    <link href="@Url.Content("~/Content/Login.css")" rel="stylesheet" />
+}
+<div class="row">
+    <div class="col-md-12">
+       
+        <div class="login">
+            <span class="validation-message errors" style="font-size: 12px; display: block;
+                            line-height: 18px;"><b>@ViewBag.Message</b></span>
+            <div class="login-triangle">
+                
+            </div>
+            <h2 class="login-header">
+              Login
+             
+            </h2>
+            <div class="login-container">
+             
+                    <form action="/home/Index" method="post" id="register-form">
+                    <div style="font-size: 12px; padding-left: 12px;" class="help-blocked ">
+                        @Html.ValidationSummary(true, "", new { @class = "validation-message errors" })
+                    </div>
+                    @Html.AntiForgeryToken()
+                    <p style="padding: 12px 12px 0px 12px;" class="index">                        
+                        <input type="text" name="Email" id="Email" placeholder="Enter Email">
+                        <span class=" validation-message errors" style="font-size: 12px; display: block;
+                            line-height: 18px;"></span>
+                    </p>
+                    <p class="index" style="padding: 12px 12px 0px 12px;">         
+                        <input type="password" name="Password" id="Password" placeholder="Enter Password">
+                        <span class=" validation-message errors" style="font-size: 12px; display: block;
+                            line-height: 18px;"></span>
+                    </p>
+                       
+                      
+                        @if (ViewBag.ShowCaptcha==true)
+                        {
+                            <div class="g-recaptcha" style="transform: scale(0.93);transform-origin: 0 0;padding: 12px 12px 0px 12px;" data-sitekey=@ViewBag.Public_key></div>      
+                        }
+                   
+                        <br />
+                        <div class="validation-message errors" style="font-size: 12px;line-height: 18px;padding: 12px 12px 0px 12px;" id="myinput"></div>
+                    <p class="index">
+                        <input type="submit" value="Login" id="formLogin" />
+                    </p>
+                    </form>
+            </div>
+        </div>
+  
+    </div>
+  
+</div>
+@section scripts{
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.9.0/jquery.validate.min.js"></script>
+   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="@Url.Content("~/Content/landingPage.js")"></script>
+}
