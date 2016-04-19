@@ -1,7 +1,5 @@
 // When the browser is ready...
-function test()
-{
-}
+
 $(function () {
     $("#myinput").hide();
     $("#register-form").validate({
@@ -76,6 +74,8 @@ $(function () {
             }
             else
             {
+                var ab = $("#register-form").data("Captcha");
+               
                 $('#myinput').hide();
                 $("#myinput").html("");
                 form.submit();

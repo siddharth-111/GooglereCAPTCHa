@@ -40,10 +40,11 @@
                         @if (ViewBag.ShowCaptcha==true)
                         {
                             <div class="g-recaptcha" style="transform: scale(0.93);transform-origin: 0 0;padding: 12px 12px 0px 12px;" data-sitekey=@ViewBag.Public_key></div>      
+                            <input type="hidden" value=@Request["enableCaptcha"] name="keyname" id="keyname"/>
                         }
                    
                         <br />
-                        <div class="validation-message errors" style="font-size: 12px;line-height: 18px;padding: 12px 12px 0px 12px;" id="myinput"></div>
+                        <div class="errors" style="font-size: 12px; color: red;padding: 12px 12px 0px 12px;" id="myinput"></div>
                     <p class="index">
                         <input type="submit" value="Login" id="formLogin" />
                     </p>
@@ -59,6 +60,10 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.9.0/jquery.validate.min.js"></script>
-   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="text/javascript">
+        var val= "@ViewBag.ForSection";
+        $("#register-form").data("Captcha", val);
+    </script>
 <script src="@Url.Content("~/Content/landingPage.js")"></script>
 }
